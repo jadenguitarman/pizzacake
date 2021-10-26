@@ -1,0 +1,30 @@
+---
+export async function getStaticPaths() {
+	const resp = await fetch(`https://raw.githubusercontent.com/jadenguitarman/pizzacake-recipes/main/__filelist__.txt`);
+	const filelist = await resp.text();
+	return filelist.split("\n").map(filename => ({
+		params: {
+			recipe: filename.trim()
+		}
+	}));
+};
+
+import { Markdown } from 'astro/components';
+const { recipe } = Astro.request.params;
+const resp = await fetch(`https://raw.githubusercontent.com/jadenguitarman/pizzacake-recipes/main/${recipe}.md`);
+const pageContent = await resp.text();
+---
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{recipe}</title>
+	</head>
+
+	<body>
+		<Markdown>
+			# {recipe}
+		</Markdown>
+		<Markdown content={pageContent} />
+	</body>
+</html>
