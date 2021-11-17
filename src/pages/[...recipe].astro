@@ -4,7 +4,7 @@ export async function getStaticPaths() {
 	const filelist = await resp.text();
 	return filelist.split("\n").filter(x => !!x).map(filename => ({
 		params: {
-			recipe: filename.trim()
+            recipe: filename.trim()
 		}
 	}));
 };
@@ -19,6 +19,7 @@ const pageContent = await resp.text();
 <html>
 	<head>
 		<title>{recipe}</title>
+		<link rel="stylesheet" href="/styles/recipe.css" />
 	</head>
 
 	<body>

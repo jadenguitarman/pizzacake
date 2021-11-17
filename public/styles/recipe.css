@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Roboto+Mono&display=swap');
+
+:root {
+	--background: #222;
+	--background-secondary: #444;
+	--text: #eef;
+	--radius: 5px;
+}
+
+* {
+	color: var(--text);
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+}
+
+body {
+	font-family: "Alegreya Sans";
+	background: var(--background);
+	display: grid;
+    grid-template-columns: 5vw 42vw 42vw 5vw;
+	grid-column-gap: 2vw;
+}
+
+body > * {
+	grid-column: 2 / 4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Roboto Mono";
+}
+
+h1 {
+	font-size: 6vh;
+	padding: 5vh 1vh;
+}
+
+h2 {
+	font-size: 5vh;
+	padding: 3vh;
+}
+
+#recipe + p > img {
+	width: 100%;
+	height: 100%;
+	border-radius: var(--radius);
+	object-fit: cover;
+}
+
+#ingredients {
+	background: var(--background-secondary);
+	border-top-left-radius: var(--radius);
+	border-top-right-radius: var(--radius);
+}
+
+#ingredients + ul {
+	padding: 3vh 10vh;
+	font-size: 3.5vh;
+	background: var(--background-secondary);
+	line-height: 1.5;
+	border-bottom-left-radius: var(--radius);
+	border-bottom-right-radius: var(--radius);
+}
+
+@media (min-width: 800px) {
+	#recipe + p {
+		grid-row: 2 / 4;
+		grid-column: 2;
+	}
+
+	#recipe + p + #ingredients,
+	#recipe + p + #ingredients + ul {
+		grid-column: 3;
+	}
+}
+
+#steps::before {
+	border-top: 2px solid var(--background-secondary);
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	filter: blur(1.5px);
+	content: " ";
+}
+
+#steps {
+	margin-top: 12vh;
+	position: relative;
+}
+
+#steps + ol {
+	font-size: 3vh;
+	line-height: 1.5;
+	padding: 0 5vw;
+}
+
+#steps + ol > li {
+	margin: 1vh 0;
+}
